@@ -1,0 +1,743 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>dev.leoduarte</groupId>
+	<artifactId>maven-parent</artifactId>
+	<version>1.0</version>
+
+	<name>Most_Complete_Example</name>
+	<description>Parent Pom tendo como dependências o Java 11 e JUnit 5
+	</description>
+	<inceptionYear>2022</inceptionYear>
+
+	<organization>
+		<name>LeoDuarte</name>
+		<url>leoduarte.dev</url>
+	</organization>
+
+	<scm>
+		<connection></connection>
+		<url></url>
+		<tag>${project.version}</tag>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id></id>
+			<url></url>
+		</repository>
+		<snapshotRepository>
+			<id></id>
+			<url></url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+
+		<!-- ===================================================================== -->
+		<!-- =============================== Build =============================== -->
+		<!-- ===================================================================== -->
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.indentSize>4</project.build.indentSize>
+		<project.build.lineLength>160</project.build.lineLength>
+		<project.build.os>unknown</project.build.os>
+		<project.build.arch>x86_64</project.build.arch>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- ===================================================================== -->
+		<!-- ============================= Libaries ============================== -->
+		<!-- ===================================================================== -->
+
+		<!-- plugins -->
+
+		<version.com.github.eirslett.frontend>1.10.3</version.com.github.eirslett.frontend>
+		<version.com.puppycrawl.tools.checkstyle>8.36.2</version.com.puppycrawl.tools.checkstyle>
+		<version.com.spotify.dockerfile>1.4.13</version.com.spotify.dockerfile>
+		<version.io.github.pmckeown.dependencytrack>1.0.0</version.io.github.pmckeown.dependencytrack>
+		<version.org.apache.maven.plugins.ant>3.0.0</version.org.apache.maven.plugins.ant>
+		<version.org.apache.maven.plugins.clean>3.1.0</version.org.apache.maven.plugins.clean>
+		<version.org.apache.maven.plugins.checkstyle>3.1.1</version.org.apache.maven.plugins.checkstyle>
+		<version.org.apache.maven.plugins.compiler>3.8.1</version.org.apache.maven.plugins.compiler>
+		<version.org.apache.maven.plugins.dependency_>3.3.0</version.org.apache.maven.plugins.dependency_>
+		<version.org.apache.maven.plugins.deploy>3.0.0-M1</version.org.apache.maven.plugins.deploy>
+		<version.org.apache.maven.plugins.enforcer>3.0.0-M3</version.org.apache.maven.plugins.enforcer>
+		<version.org.apache.maven.plugins.install>3.0.0-M1</version.org.apache.maven.plugins.install>
+		<version.org.apache.maven.plugins.invoker>3.2.1</version.org.apache.maven.plugins.invoker>
+		<version.org.apache.maven.plugins.jar>3.2.0</version.org.apache.maven.plugins.jar>
+		<version.org.apache.maven.plugins.javadoc>3.2.0</version.org.apache.maven.plugins.javadoc>
+		<version.org.apache.maven.plugins.jxr>3.0.0</version.org.apache.maven.plugins.jxr>
+		<version.org.apache.maven.plugins.plugin_>3.6.0</version.org.apache.maven.plugins.plugin_>
+		<version.org.apache.maven.plugins.release>3.0.0-M1</version.org.apache.maven.plugins.release>
+		<version.org.apache.maven.plugins.resources>3.2.0</version.org.apache.maven.plugins.resources>
+		<version.org.apache.maven.plugins.shade>3.2.1</version.org.apache.maven.plugins.shade>
+		<version.org.apache.maven.plugins.site>3.9.1</version.org.apache.maven.plugins.site>
+		<version.org.apache.maven.plugins.site.info>3.1.1</version.org.apache.maven.plugins.site.info>
+		<version.org.apache.maven.plugins.source>3.2.1</version.org.apache.maven.plugins.source>
+		<version.org.apache.maven.plugins.shade>3.2.4</version.org.apache.maven.plugins.shade>
+		<version.org.apache.maven.plugins.surefire>3.0.0-M5</version.org.apache.maven.plugins.surefire>
+		<version.org.cyclonedx.maven>2.5.3</version.org.cyclonedx.maven>
+		<version.org.jacoco>0.8.6</version.org.jacoco>
+		<version.org.openapitools>4.3.1</version.org.openapitools>
+
+		<!-- dependencies -->
+
+		<version.org.junit.jupiter>5.7.0</version.org.junit.jupiter>
+		<version.org.junit.platform>1.7.0</version.org.junit.platform>
+		<version.org.projectlombok>1.18.20</version.org.projectlombok>
+
+		<!-- ===================================================================== -->
+		<!-- =========================== Configuration =========================== -->
+		<!-- ===================================================================== -->
+
+		<dependencytrack.serverurl></dependencytrack.serverurl>
+
+		<!-- deploy only is used to avoid repackaging of artifacts for deployment -->
+		<maven.deploy.only>false</maven.deploy.only>
+		<deployAtEnd>${maven.deploy.only}</deployAtEnd>
+
+		<maven.test.redirectTestOutputToFile>false</maven.test.redirectTestOutputToFile>
+		<maven.test.skip>${maven.deploy.only}</maven.test.skip>
+
+		<maven.main.skip>${maven.deploy.only}</maven.main.skip>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.parameters>true</maven.compiler.parameters>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+		<maven.compiler.failOnWarning>false</maven.compiler.failOnWarning>
+
+		<checkstyle.skip>${maven.deploy.only}</checkstyle.skip>
+		<checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
+		<checkstyle.suppressions.location>checkstyle-suppression.xml</checkstyle.suppressions.location>
+		<checkstyle.includeResources>true</checkstyle.includeResources>
+		<checkstyle.includeTestResources>true</checkstyle.includeTestResources>
+		<checkstyle.resourceIncludes>**/*.properties,**/*.yaml,**/*.sql,**/*.xml</checkstyle.resourceIncludes>
+
+		<dockerfile.contextDirectory>${project.build.directory}</dockerfile.contextDirectory>
+		<dockerfile.retryCount>0</dockerfile.retryCount>
+		<dockerfile.googleContainerRegistryEnabled>false</dockerfile.googleContainerRegistryEnabled>
+		<dockerfile.writeTestMetadata>false</dockerfile.writeTestMetadata>
+		<dockerfile.skipDockerInfo>true</dockerfile.skipDockerInfo>
+		<dockerfile.tag>${project.version}</dockerfile.tag>
+		<dockerfile.repository.host>hub.docker.com</dockerfile.repository.host>
+		<dockerfile.repository.imageName>${project.artifactId}</dockerfile.repository.imageName>
+		<dockerfile.repository>${dockerfile.repository.host}/${dockerfile.repository.imageName}</dockerfile.repository>
+		<dockerfile.tag.skip>${maven.deploy.only}</dockerfile.tag.skip>
+		<dockerfile.build.skip>${maven.deploy.only}</dockerfile.build.skip>
+
+		<!-- LOCAL-SNAPSHOT is not a valid semver, use user related custom version -->
+		<helm.chartVersion>0.0.1-${user.name}-SNAPSHOT</helm.chartVersion>
+		<helm.chartDirectory>${project.build.directory}/helm</helm.chartDirectory>
+		<helm.downloadVersion>v2.15.2</helm.downloadVersion>
+		<helm.downloadUrl>https://get.helm.sh/helm-${helm.downloadVersion}-${project.build.os}-amd64.tar.gz</helm.downloadUrl>
+		<helm.homeDirectory>${project.build.directory}/helm</helm.homeDirectory>
+		<helm.init.skipRefresh>true</helm.init.skipRefresh>
+		<helm.init.skip>${maven.deploy.only}</helm.init.skip>
+		<helm.lint.skip>${maven.deploy.only}</helm.lint.skip>
+		<helm.dependency-build.skip>${maven.deploy.only}</helm.dependency-build.skip>
+		<helm.package.skip>${maven.deploy.only}</helm.package.skip>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Lazy Developer -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${version.org.projectlombok}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Tests -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${version.org.junit.jupiter}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${version.org.junit.jupiter}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${version.org.junit.jupiter}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-params</artifactId>
+				<version>${version.org.junit.jupiter}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-commons</artifactId>
+				<version>${version.org.junit.platform}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-engine</artifactId>
+				<version>${version.org.junit.platform}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>${version.org.junit.platform}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+
+		<!-- lazy developer -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>java-net-repo</id>
+			<url>https://maven.java.net/content/repositories/public/</url>
+			<releases>
+				<enabled>true</enabled>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<checksumPolicy>fail</checksumPolicy>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jboss-repo</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>spring-repo</id>
+			<url>https://repo.spring.io/release</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven-central</id>
+			<url>https://mvnrepository.com/open-source/maven-plugins</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- define versions for stable build -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.ant}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.checkstyle}</version>
+					<configuration>
+						<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>${version.com.puppycrawl.tools.checkstyle}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.clean}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.compiler}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.dependency_}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.deploy}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.enforcer}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.surefire}</version>
+					<configuration>
+						<trimStackTrace>false</trimStackTrace>
+						<!-- WORKAROUND spring boot sucks, see https://github.com/spring-projects/spring-boot/issues/6254 -->
+						<additionalClasspathElements>
+							<additionalClasspathElement>${project.basedir}/target/classes</additionalClasspathElement>
+						</additionalClasspathElements>
+						<failIfNoTests>true</failIfNoTests>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.install}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.invoker}</version>
+					<configuration>
+						<skipInstallation>${maven.test.skip.exec}</skipInstallation>
+						<skipInvocation>${maven.test.skip.exec}</skipInvocation>
+						<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+						<cloneClean>true</cloneClean>
+						<pomIncludes>
+							<pomInclude>*/pom.xml</pomInclude>
+						</pomIncludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.jar}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.javadoc}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.plugin_}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.release}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.resources}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.shade}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+						<createDependencyReducedPom>false</createDependencyReducedPom>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.source}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.surefire}</version>
+					<configuration>
+						<trimStackTrace>false</trimStackTrace>
+					</configuration>
+				</plugin>
+
+				<!-- preconfigure custom plugins -->
+				<plugin>
+					<groupId>com.github.eirslett</groupId>
+					<artifactId>frontend-maven-plugin</artifactId>
+					<version>${version.com.github.eirslett.frontend}</version>
+				</plugin>
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${version.com.spotify.dockerfile}</version>
+					<configuration>
+						<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.openapitools</groupId>
+					<artifactId>openapi-generator-maven-plugin</artifactId>
+					<version>${version.org.openapitools}</version>
+					<configuration>
+						<skip>${maven.deploy.only}</skip>
+						<strictSpec>true</strictSpec>
+						<indentSize>${project.build.indentSize}</indentSize>
+						<modelNameSuffix>VO</modelNameSuffix>
+						<skipValidateSpec>false</skipValidateSpec>
+						<skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+						<output>${project.build.directory}</output>
+					</configuration>
+				</plugin>
+
+				<!-- reporting plugins -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.jxr}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.site.info}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.site}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${version.org.apache.maven.plugins.surefire}</version>
+					<configuration>
+						<alwaysGenerateSurefireReport>false</alwaysGenerateSurefireReport>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${version.org.jacoco}</version>
+					<configuration>
+						<skip>${maven.test.skip}</skip>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+		<plugins>
+
+			<!-- BOM creation plugin -->
+			<plugin>
+				<groupId>org.cyclonedx</groupId>
+				<artifactId>cyclonedx-maven-plugin</artifactId>
+				<version>${version.org.cyclonedx.maven}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>makeAggregateBom</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<projectType>library</projectType>
+					<schemaVersion>1.3</schemaVersion>
+					<includeBomSerialNumber>true</includeBomSerialNumber>
+					<includeCompileScope>true</includeCompileScope>
+					<includeProvidedScope>true</includeProvidedScope>
+					<includeRuntimeScope>true</includeRuntimeScope>
+					<includeSystemScope>true</includeSystemScope>
+					<includeTestScope>false</includeTestScope>
+					<includeLicenseText>false</includeLicenseText>
+					<outputFormat>all</outputFormat>
+					<outputName>bom</outputName>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>summary</report>
+							<report>team</report>
+							<report>licenses</report>
+							<report>dependencies</report>
+							<report>scm</report>
+							<report>ci-management</report>
+							<report>issue-management</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- FIXME dependencies does not work with Java11 yet -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<reportSets> <reportSet> <reports> <report>analyze-report</report> </reports> 
+				</reportSet> </reportSets> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>jxr</report>
+							<report>test-jxr</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report-only</report>
+							<report>failsafe-report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report</report>
+							<report>report-integration</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+
+		<!-- checks some stuff -->
+		<profile>
+			<id>release</id>
+			<activation>
+				<file>
+					<exists>pom.xml</exists>
+				</file>
+			</activation>
+			<properties>
+
+				<!-- refresh index -->
+				<helm.init.skipRefresh>false</helm.init.skipRefresh>
+
+				<!-- disable test noise -->
+				<maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+
+			</properties>
+			<build>
+				<plugins>
+
+					<!-- measure test coverage -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- fail if checkstyle reports problems -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- add source for downstream projects -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- skip tests -->
+		<profile>
+			<id>notest</id>
+			<properties>
+				<maven.test.skip.exec>true</maven.test.skip.exec>
+			</properties>
+		</profile>
+
+		<!-- OS selection -->
+		<profile>
+			<id>darwin</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<project.build.os>osx</project.build.os>
+				<helm.downloadUrl>https://get.helm.sh/helm-${helm.downloadVersion}-darwin-amd64.tar.gz</helm.downloadUrl>
+			</properties>
+		</profile>
+		<profile>
+			<id>linux</id>
+			<activation>
+				<os>
+					<family>linux</family>
+				</os>
+			</activation>
+			<properties>
+				<project.build.os>linux</project.build.os>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<project.build.os>windows</project.build.os>
+			</properties>
+		</profile>
+
+		<!-- Custom build directory, e.g. builds with different jdks / dependency 
+			versions -->
+		<profile>
+			<id>build-directory</id>
+			<activation>
+				<property>
+					<name>custom.build.directory</name>
+				</property>
+			</activation>
+			<build>
+				<directory>${custom.build.directory}</directory>
+			</build>
+		</profile>
+
+		<profile>
+			<id>dependency-track</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<!-- BOM upload to dependency track -->
+					<plugin>
+						<groupId>io.github.pmckeown</groupId>
+						<artifactId>dependency-track-maven-plugin</artifactId>
+						<version>${version.io.github.pmckeown.dependencytrack}</version>
+						<configuration>
+							<dependencyTrackBaseUrl>${dependencytrack.serverurl}</dependencyTrackBaseUrl>
+							<apiKey>${dependencyTrackApiKey}</apiKey>
+							<dependency-track.projectName>${dependencyTrack.projectName}</dependency-track.projectName>
+							<dependency-track.projectVersion>${project.version}</dependency-track.projectVersion>
+						</configuration>
+						<executions>
+							<execution>
+								<id>upload</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>upload-bom</goal>
+									<goal>metrics</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

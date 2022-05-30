@@ -7,9 +7,8 @@
 	<artifactId>maven-parent</artifactId>
 	<version>1.0</version>
 
-	<name>Most_Complete_Example</name>
-	<description>Parent Pom tendo como dependências o Java 11 e JUnit 5
-	</description>
+	<name>maven-parent-complete-example</name>
+	<description>Parent Pom tendo como dependências o Java 11 e JUnit 5</description>
 	<inceptionYear>2022</inceptionYear>
 
 	<organization>
@@ -18,7 +17,8 @@
 	</organization>
 
 	<scm>
-		<connection></connection>
+		<connection>scm:git:https://leonardoduarte1305@github.com/maven-parent.git</connection>
+		<developerConnection>scm:git:https://leonardoduarte1305@github.com/maven-parent.git</developerConnection>
 		<url></url>
 		<tag>${project.version}</tag>
 	</scm>
@@ -248,6 +248,11 @@
 			<id>spring-repo</id>
 			<url>https://repo.spring.io/release</url>
 		</repository>
+
+		<repository>
+			<id>central.repository</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -341,20 +346,6 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-invoker-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.invoker}</version>
-					<configuration>
-						<skipInstallation>${maven.test.skip.exec}</skipInstallation>
-						<skipInvocation>${maven.test.skip.exec}</skipInvocation>
-						<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-						<cloneClean>true</cloneClean>
-						<pomIncludes>
-							<pomInclude>*/pom.xml</pomInclude>
-						</pomIncludes>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${version.org.apache.maven.plugins.jar}</version>
 					<configuration>
@@ -392,15 +383,6 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
-					<version>${version.org.apache.maven.plugins.shade}</version>
-					<configuration>
-						<skip>${maven.deploy.only}</skip>
-						<createDependencyReducedPom>false</createDependencyReducedPom>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${version.org.apache.maven.plugins.source}</version>
 				</plugin>
@@ -414,11 +396,6 @@
 				</plugin>
 
 				<!-- preconfigure custom plugins -->
-				<plugin>
-					<groupId>com.github.eirslett</groupId>
-					<artifactId>frontend-maven-plugin</artifactId>
-					<version>${version.com.github.eirslett.frontend}</version>
-				</plugin>
 				<plugin>
 					<groupId>com.spotify</groupId>
 					<artifactId>dockerfile-maven-plugin</artifactId>
@@ -530,8 +507,8 @@
 				</reportSets>
 			</plugin>
 			<!-- FIXME dependencies does not work with Java11 yet -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
-				<reportSets> <reportSet> <reports> <report>analyze-report</report> </reports> 
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId>
+				<reportSets> <reportSet> <reports> <report>analyze-report</report> </reports>
 				</reportSet> </reportSets> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -704,39 +681,6 @@
 			</activation>
 			<build>
 				<directory>${custom.build.directory}</directory>
-			</build>
-		</profile>
-
-		<profile>
-			<id>dependency-track</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<!-- BOM upload to dependency track -->
-					<plugin>
-						<groupId>io.github.pmckeown</groupId>
-						<artifactId>dependency-track-maven-plugin</artifactId>
-						<version>${version.io.github.pmckeown.dependencytrack}</version>
-						<configuration>
-							<dependencyTrackBaseUrl>${dependencytrack.serverurl}</dependencyTrackBaseUrl>
-							<apiKey>${dependencyTrackApiKey}</apiKey>
-							<dependency-track.projectName>${dependencyTrack.projectName}</dependency-track.projectName>
-							<dependency-track.projectVersion>${project.version}</dependency-track.projectVersion>
-						</configuration>
-						<executions>
-							<execution>
-								<id>upload</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>upload-bom</goal>
-									<goal>metrics</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
 			</build>
 		</profile>
 	</profiles>

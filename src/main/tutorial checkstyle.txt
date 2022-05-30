@@ -1,0 +1,27 @@
+De posse do: codestyle.xml, do checkstyle.xml e do checkstyle-suppressions.xml
+
+Acessar no IntelliJ:
+
+File> Settings> Plugins> 
+	- Buscar no Marketplace por CheckStyle-IDEA
+	- Instalar
+	- Restart IDE
+	
+File> Settings> Tools> Checkstyle
+	- trocar "Only Java sources (excluding tests)" por: "Only Java sources (including tests)"
+	- Na seção Configuration File: clicar em +
+		- Description: leonardo-codestyle
+		- Use a local Checkstyle file: selecione seu arquivo checkstyle.xml
+		- Clique em Next
+		- No local indicado como Value ao lado de checkstyle.suppressions.file: adicione o nome do seu
+			checkstyle.suppression.xml
+		- Clique em Finish
+		
+		Agora de volta na janela de Tools> Checkstyle: Clique no checkbox ao lado de leonardo-codestyle e
+		- Clique em Apply e Ok
+
+	Acessar:
+	File> Settings> Editor> Code Style> Java> Clicar na engrenagem ao lado de: Scheme: ...
+		- Clique em Import Scheme e depois em IntelliJ IDEA Code Style Scheme
+		- Selecione seu arquivo de codestyle e clique em Ok
+		- Clique em Ok novamente
